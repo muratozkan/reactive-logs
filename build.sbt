@@ -6,6 +6,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.7"
 
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
 libraryDependencies ++= Seq(
   ws,
   "com.typesafe.play" %% "play-streams-experimental" % "2.4.0",
