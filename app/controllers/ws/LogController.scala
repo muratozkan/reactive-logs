@@ -1,18 +1,26 @@
 package controllers.ws
 
-import actors.api.LogForwarder
-import play.api.mvc.{WebSocket, Controller}
+import javax.inject.{Named, Singleton}
 
-class LogController extends Controller {
+import actors.SocketEndpoint
+import actors.SocketEndpoint.{Command, Unknown}
+import akka.actor.ActorRef
+
+import com.google.inject.Inject
+import play.api.mvc.{Controller, WebSocket}
+
+class LogController @Inject() (@Named("arbiter") arbiter: ActorRef) extends Controller {
 
   import play.api.Play.current
 
+  def parse(msg: String): Command = Unknown(msg)
+
   def log = WebSocket.acceptWithActor[String, String] { request => out =>
-    LogForwarder.props(out)
+    SocketEndpoint.props(out, arbiter, parse(_: String))
   }
 
   def source = WebSocket.acceptWithActor[String, String] { request => out =>
-    // TODO: Will be routed to SourceForwarder
-    LogForwarder.props(out)
+    // TODO: Will be routed to SourceForwarder,
+    SocketEndpoint.props(out, arbiter, parse(_: String))
   }
 }
