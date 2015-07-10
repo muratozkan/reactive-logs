@@ -50,4 +50,6 @@ class AppLog(sourceId: Int) extends Actor with ActorLogging {
 
     case _ =>
   }
+
+  override def postStop(): Unit = isRunning = false
 }

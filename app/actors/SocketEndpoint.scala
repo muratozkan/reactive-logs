@@ -25,7 +25,7 @@ class SocketEndpoint(out: ActorRef,
       out ! logLine(payload)
   }
 
-  override def postStop(): Unit = log.info("Disconnected")
+  override def postStop(): Unit = log.debug("Disconnected")
 
   private def error(message: String) = {
     s"E $message"
