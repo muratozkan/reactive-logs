@@ -10,14 +10,14 @@ import org.apache.commons.io.input.{TailerListenerAdapter, Tailer}
 import scala.collection.mutable
 
 object AppLog {
-  def props(sourceId: Int) = Props(new AppLog(sourceId))
+  def props(source: Source) = Props(new AppLog(source))
 }
 
-class AppLog(sourceId: Int) extends Actor with ActorLogging {
+class AppLog(source: Source) extends Actor with ActorLogging {
 
   val subscribers = mutable.Map.empty[ActorRef, String]
 
-  val tailer = new Tailer(new File("./test.log"), new TailerListenerAdapter {
+  val tailer = new Tailer(new File(source.file), new TailerListenerAdapter {
     override def handle(line: String): Unit =
       self ! line
 

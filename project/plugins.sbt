@@ -8,5 +8,3 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.4.2")
 
 //Checkstyle Plugin
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.7.0")
-
-
