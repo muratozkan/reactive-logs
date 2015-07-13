@@ -6,6 +6,8 @@ Simple log collection &amp; filtering app for microservices
 
 reactive-logs collects logs from various sources, such as local file system, TCP / UDP endpoints, etc... Users specify log entries and server apps they are interested in. Then, reactive-logs selects/finds relevant log lines and sends it to user for viewing.
 
+Here's a simple [overview](docs/Overview.md) of Reactive Logs app structure.
+
 ### Current Features
 
 - None :)
