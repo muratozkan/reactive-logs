@@ -1,7 +1,7 @@
 package actors
 
 import actors.Arbiter.Line
-import akka.actor.{ActorLogging, Actor, ActorRef, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 
 object SocketEndpoint {
   def props(out: ActorRef, arbiter: ActorRef) = Props(new SocketEndpoint(out, arbiter))

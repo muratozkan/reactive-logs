@@ -1,24 +1,34 @@
+
 name := """reactive-logs"""
 
 version := "0.0.1"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
 scalaVersion := "2.11.7"
 
-resolvers ++= Seq(
+lazy val commonSettings = Seq(
+  organization := "com.reactivelogs",
+  version := "0.0.1",
+  scalaVersion := "2.11.7",
+  scalacOptions := Seq("-encoding", "utf8")
+)
+
+val commonResolvers = Seq(
   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
   "apache-snapshots" at "http://repository.apache.org/snapshots"
 )
 
-libraryDependencies ++= Seq(
-  ws,
-  "commons-io" % "commons-io" % "2.5-SNAPSHOT",
-  specs2 % Test
-)
+lazy val core = (project in file ("core"))
+  .settings(commonSettings:_*)
+  .settings(resolvers ++= commonResolvers)
 
-// Play provides two styles of routers, one expects its actions to be injected, the
-// other, legacy style, accesses its actions statically.
-routesGenerator := InjectedRoutesGenerator
+lazy val playApp = (project in file ("playApp"))
+  .settings(commonSettings:_*)
+  .settings(resolvers ++= commonResolvers)
+  .enablePlugins(PlayScala)
+  .dependsOn(core)
 
-scalastyleConfig := file("conf/scalastyle-config.xml")
+scalastyleConfig := file("config/scalastyle-config.xml")
+
+lazy val versionReport = TaskKey[String]("version-report")
+
+

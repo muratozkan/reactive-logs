@@ -1,6 +1,6 @@
 package actors
 
-import akka.actor.{Props, ActorLogging, Actor}
+import akka.actor.{Actor, ActorLogging, Props}
 
 object SourceDB {
 

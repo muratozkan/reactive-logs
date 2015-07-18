@@ -2,10 +2,9 @@ package actors
 
 import java.io.File
 
-
 import actors.Arbiter.{Line, Subscribe}
-import akka.actor.{ActorRef, Actor, ActorLogging, Props}
-import org.apache.commons.io.input.{TailerListenerAdapter, Tailer}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import org.apache.commons.io.input.{Tailer, TailerListenerAdapter}
 
 import scala.collection.mutable
 

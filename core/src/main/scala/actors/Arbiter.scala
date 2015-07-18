@@ -1,8 +1,7 @@
 package actors
 
 import actors.Command.From
-
-import akka.actor.{ActorRef, ActorLogging, Actor, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 
 import scala.collection.mutable
 
