@@ -1,4 +1,4 @@
-package actors
+package core
 
 import akka.actor.{Actor, ActorLogging, Props}
 
@@ -15,7 +15,7 @@ object SourceDB {
 
 class SourceDB extends Actor with ActorLogging {
 
-  import actors.SourceDB._
+  import core.SourceDB._
 
   private val sourceTable = Map(1 -> Source(1, "test", "localhost", "FILE", "./test.log"))
   

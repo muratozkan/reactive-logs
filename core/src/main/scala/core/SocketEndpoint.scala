@@ -1,20 +1,22 @@
-package actors
+package core
 
-import actors.Arbiter.Line
+import core.Arbiter.Line
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import core.protocol.{CommandParser, Command}
 
 object SocketEndpoint {
-  def props(out: ActorRef, arbiter: ActorRef) = Props(new SocketEndpoint(out, arbiter))
+  def props(out: ActorRef, arbiter: ActorRef, cp: CommandParser) = Props(new SocketEndpoint(out, arbiter, cp))
 }
 
 class SocketEndpoint(out: ActorRef,
-                     arbiter: ActorRef) extends Actor with ActorLogging {
+                     arbiter: ActorRef,
+                     commandParser: CommandParser) extends Actor with ActorLogging {
 
   private [this] var messageSeq = 0
 
   override def receive: Receive = {
     case msg: String => //parse bare message
-      self ! Command.apply(messageSeq, msg)
+      self ! commandParser.parse(messageSeq, msg)
       messageSeq = messageSeq + 1
     case Command.Unknown(c) =>
       out ! error("Unknown")

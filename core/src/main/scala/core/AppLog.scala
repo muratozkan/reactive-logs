@@ -1,8 +1,8 @@
-package actors
+package core
 
 import java.io.File
 
-import actors.Arbiter.{Line, Subscribe}
+import core.Arbiter.{Line, Subscribe}
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import org.apache.commons.io.input.{Tailer, TailerListenerAdapter}
 

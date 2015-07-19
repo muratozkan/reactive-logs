@@ -1,7 +1,7 @@
-package actors
+package core
 
-import actors.Command.From
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import core.protocol.Command.From
 
 import scala.collection.mutable
 

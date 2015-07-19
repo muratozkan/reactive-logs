@@ -9,7 +9,11 @@ lazy val commonSettings = Seq(
   organization := "com.reactivelogs",
   version := "0.0.1",
   scalaVersion := "2.11.7",
-  scalacOptions := Seq("-encoding", "utf8")
+  scalacOptions := Seq(
+    "-unchecked",
+    "-deprecation",
+    "-target:jvm-1.8",
+    "-encoding", "utf8")
 )
 
 val commonResolvers = Seq(

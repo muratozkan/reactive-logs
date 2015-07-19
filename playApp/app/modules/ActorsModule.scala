@@ -1,6 +1,6 @@
 package modules
 
-import actors.Arbiter
+import core.Arbiter
 import com.google.inject.AbstractModule
 import play.api.libs.concurrent.AkkaGuiceSupport
 
